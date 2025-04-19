@@ -2,17 +2,24 @@ services:
   - type: web
     name: travel-the-world
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn Travel_the_World.wsgi:application
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn Travel_the_World.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: Travel_the_World.settings
       - key: PYTHON_VERSION
         value: 3.11
-    plan: free
-    region: oregon
-    runtime: python
-    branch: master
-    rootDir: TercerEntrega/Travel_the_World
+      - key: DATABASE_URL
+        fromDatabase:
+          name: travel-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+
+databases:
+  - name: travel-db
+    databaseName: traveling_db
+    user: postgres
+
 
 
