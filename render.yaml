@@ -4,10 +4,10 @@ services:
     env: python
     workingDir: TERCERENTREGA
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn Travel_the_World.wsgi:application
+    startCommand: gunicorn Travel_the_World.Travel_the_World.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: Travel_the_World.settings
+        value: Travel_the_World.Travel_the_World.settings
       - key: PYTHON_VERSION
         value: 3.11
       - key: PYTHONPATH
@@ -23,6 +23,7 @@ databases:
   - name: travel-db
     databaseName: traveling_db
     user: postgres
+
 
 
 
