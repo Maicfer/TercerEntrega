@@ -2,8 +2,9 @@ services:
   - type: web
     name: travel-the-world
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn Travel_the_World.wsgi:application"
+    workingDir: TERCERENTREGA
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn Travel_the_World.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: Travel_the_World.settings
@@ -20,6 +21,5 @@ databases:
   - name: travel-db
     databaseName: traveling_db
     user: postgres
-
 
 
