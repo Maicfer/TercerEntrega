@@ -2,12 +2,12 @@ services:
   - type: web
     name: travel-the-world
     env: python
-    rootDir: TERCERENTREGA/Travel_the_World/Travel_the_World
-    buildCommand: pip install -r ../../requirements.txt
-    startCommand: gunicorn Travel_the_World.wsgi:application
+    rootDir: Travel_the_World  # Cambié a la carpeta correcta que contiene el manage.py
+    buildCommand: pip install -r ../../requirements.txt  # El buildCommand apunta correctamente a requirements.txt
+    startCommand: gunicorn Travel_the_World.wsgi:application  # No cambiamos esta parte, ya que sigue siendo válida
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: Travel_the_World.settings
+        value: Travel_the_World.settings  # Confirmamos que la ruta al settings es correcta
       - key: PYTHON_VERSION
         value: 3.11
       - key: DATABASE_URL
