@@ -10,6 +10,8 @@ services:
         value: Travel_the_World.settings
       - key: PYTHON_VERSION
         value: 3.11
+      - key: PYTHONPATH
+        value: ./Travel_the_World
       - key: DATABASE_URL
         fromDatabase:
           name: travel-db
@@ -21,5 +23,6 @@ databases:
   - name: travel-db
     databaseName: traveling_db
     user: postgres
+
 
 
