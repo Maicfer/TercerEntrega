@@ -3,7 +3,7 @@ services:
     name: travel-the-world
     env: python
     rootDir: Travel_the_World  # Cambié a la carpeta correcta que contiene el manage.py
-    buildCommand: pip install -r ../../requirements.txt  # El buildCommand apunta correctamente a requirements.txt
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
     startCommand: gunicorn Travel_the_World.wsgi:application  # No cambiamos esta parte, ya que sigue siendo válida
     envVars:
       - key: DJANGO_SETTINGS_MODULE
