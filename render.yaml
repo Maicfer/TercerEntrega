@@ -22,6 +22,8 @@ databases:
     databaseName: traveling_db
     user: postgres
 
+python manage.py loaddata destinos.json
+
 
 
 
