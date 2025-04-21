@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url  # Asegúrate de tenerlo instalado: pip install dj-database-url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,18 +51,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Travel_the_World.wsgi.application'
 
-# Configuración de la base de datos usando dj-database-url
+# ✅ Base de datos explícita (Render PostgreSQL)
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgress:djUrmpjrzO8qUQNL7Qxm1AYxAoXC31hP@dpg-d03c47k9c44c73b1fau0-a.oregon-postgres.render.com/traveling_db',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'traveling_db',
+        'USER': 'postgress',
+        'PASSWORD': 'djUrmpjrzO8qUQNL7Qxm1AYxAoXC31hP',
+        'HOST': 'dpg-d03c47k9c44c73b1fau0-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
 
 LOGIN_REDIRECT_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/users/logout/'
 
-# Cookies seguras solo si usas HTTPS en Render
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
@@ -87,4 +89,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
