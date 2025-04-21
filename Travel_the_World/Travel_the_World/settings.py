@@ -1,16 +1,16 @@
 from pathlib import Path
 import os
-import dj_database_url  # Asegúrate de agregarlo al requirements.txt
+import dj_database_url  # Asegúrate de tenerlo instalado: pip install dj-database-url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q@%ka5fta$0ue(hw8da!difqm2!o=l^x0g8zjd4hg%aknm#7!h')
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = False
 
 ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
-# Apps instaladas
+# Aplicaciones instaladas
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,7 +24,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # para servir estáticos en producción
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -38,7 +37,7 @@ ROOT_URLCONF = 'Travel_the_World.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'Travel_the_World' / 'templates'],
+        'DIRS': [BASE_DIR / 'Travel_the_World/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,10 +52,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Travel_the_World.wsgi.application'
 
-# Base de datos Render con dj_database_url
+# Configuración de la base de datos usando dj-database-url
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:djUrmpjrzO8qUQNL7Qxm1AYxAoXC31hP@dpg-d03c47k9c44c73b1fau0-a.oregon-postgres.render.com/traveling_db',
+        default='postgresql://postgress:djUrmpjrzO8qUQNL7Qxm1AYxAoXC31hP@dpg-d03c47k9c44c73b1fau0-a.oregon-postgres.render.com/traveling_db',
         conn_max_age=600
     )
 }
@@ -64,6 +63,7 @@ DATABASES = {
 LOGIN_REDIRECT_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/users/logout/'
 
+# Cookies seguras solo si usas HTTPS en Render
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
@@ -79,14 +79,12 @@ TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
 
-# Archivos estáticos y media
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# WhiteNoise para servir estáticos en producción
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
