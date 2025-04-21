@@ -19,4 +19,6 @@ urlpatterns = [
     path('hoteles/', views.hoteles, name='hoteles'),  # corregido
     path('paquetes/', views.paquetes, name='paquetes'),  # corregido
     path('reseñas/', views.reseñas_view, name='reseñas'),
+    path('contar_destinos/', contar_destinos, name='contar_destinos'),
+
 ]

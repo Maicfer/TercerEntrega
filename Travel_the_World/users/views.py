@@ -416,3 +416,7 @@ def logout_view(request):
         return redirect("login")
     else:
         return redirect("home")
+
+def contar_destinos(request):
+    total = Destino.objects.count()
+    return HttpResponse(f"Hay {total} destinos en la base de datos.")
