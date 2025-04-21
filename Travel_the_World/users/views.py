@@ -408,7 +408,7 @@ def reseñas_view(request):
             messages.error(request, 'Por favor completa todos los campos.')
 
     reseñas = Reseña.objects.order_by('-fecha')  # las más recientes primero
-    return render(request, 'users/reseñas.html', {'reseñas': reseñas})
+    return render(request, 'reseñas.html', {'reseñas': reseñas})
 
 def logout_view(request):
     if request.method == "POST":
