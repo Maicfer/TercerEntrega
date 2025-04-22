@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,4 +98,10 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React local
+    "https://tu-app-react.vercel.app",  # Cambia esto por el dominio real en producción
+]
+
+CORS_ALLOW_CREDENTIALS = True  # Para que se pasen cookies o tokens si es necesario
 
