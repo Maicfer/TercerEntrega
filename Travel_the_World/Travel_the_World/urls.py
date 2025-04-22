@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),  # Enlaza las rutas de la app users
     path('', home_view, name='home'),  # Página principal
-    
+    path('api/', include('users.api_urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

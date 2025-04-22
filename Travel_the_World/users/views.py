@@ -14,6 +14,10 @@ from .models import Profile
 from django.core.files.storage import FileSystemStorage
 from .forms import ProfileForm 
 from django.core.management import call_command
+from rest_framework import viewsets
+from .serializers import DestinoSerializer
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
 def home_view(request):
     return render(request, "home.html")
@@ -422,8 +426,10 @@ def contar_destinos(request):
     total = Destino.objects.count()
     return HttpResponse(f"Hay {total} destinos en la base de datos.")
 
-
-
 def importar_destinos_view(request):
     call_command('import_destinos')
     return HttpResponse("✅ Importación de destinos completada.")
+
+class DestinoViewSet(viewsets.ModelViewSet):
+    queryset = Destino.objects.all()
+    serializer_class = DestinoSerializer
