@@ -7,7 +7,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # borrar si llega a fallar
     path('users/', include('users.urls')),  # Enlaza las rutas de la app users
     path('', home_view, name='home'),  # Página principal
     path('api/', include('users.api_urls')),
