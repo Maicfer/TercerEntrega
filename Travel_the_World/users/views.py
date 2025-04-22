@@ -13,6 +13,7 @@ import re
 from .models import Profile
 from django.core.files.storage import FileSystemStorage
 from .forms import ProfileForm 
+from django.core.management import call_command
 
 def home_view(request):
     return render(request, "home.html")
@@ -420,3 +421,9 @@ def logout_view(request):
 def contar_destinos(request):
     total = Destino.objects.count()
     return HttpResponse(f"Hay {total} destinos en la base de datos.")
+
+
+
+def importar_destinos_view(request):
+    call_command('import_destinos')
+    return HttpResponse("✅ Importación de destinos completada.")
