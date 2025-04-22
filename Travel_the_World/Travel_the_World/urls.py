@@ -14,8 +14,6 @@ urlpatterns = [
     path('users/', include('users.urls')),  # Enlaza las rutas de la app users
     path('', home_view, name='home'),  # Página principal
     path('api/', include('users.api_urls')),
-]
- # Endpoints para autenticación JWT
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), # Endpoints para autenticación JWT
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), # Endpoints para autenticación JWT
 ]
