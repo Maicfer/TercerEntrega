@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views  
 from django.contrib.auth.views import LogoutView
+from .views import contar_destinos
+
 
 urlpatterns = [
     path('login/', views.login_view, name='login'),
