@@ -34,6 +34,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Travel_the_World.urls'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://tercerentrega-aiwn.onrender.com",  # URL de tu frontend en Render
+]
+
 
 TEMPLATES = [
     {
