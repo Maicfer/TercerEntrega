@@ -1,9 +1,9 @@
 # users/serializers.py
 
 from rest_framework import serializers
-from .models import Destino
+from .models import Reseña
 
-class DestinoSerializer(serializers.ModelSerializer):
+class ReseñaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Destino
+        model = Reseña
         fields = '__all__'

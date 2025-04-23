@@ -15,9 +15,10 @@ from django.core.files.storage import FileSystemStorage
 from .forms import ProfileForm 
 from django.core.management import call_command
 from rest_framework import viewsets
-from .serializers import DestinoSerializer
+from .serializers import ReseñaSerializer
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 def home_view(request):
     return render(request, "home.html")
@@ -430,6 +431,8 @@ def importar_destinos_view(request):
     call_command('import_destinos')
     return HttpResponse("✅ Importación de destinos completada.")
 
-class DestinoViewSet(viewsets.ModelViewSet):
-    queryset = Destino.objects.all()
-    serializer_class = DestinoSerializer
+class ReseñaViewSet(viewsets.ModelViewSet):
+    queryset = Reseña.objects.all()
+    serializer_class = ReseñaSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
