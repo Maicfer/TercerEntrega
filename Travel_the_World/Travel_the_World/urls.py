@@ -14,6 +14,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Endpoints para autenticación JWT
 ]
 
-# Esto debe ir al final, después de definir urlpatterns
-if settings.DEBUG:  # Fuerza para producción si usas Whitenoise u otro proxy
+# Asegura que solo se sirvan archivos media en modo DEBUG (desarrollo local)
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

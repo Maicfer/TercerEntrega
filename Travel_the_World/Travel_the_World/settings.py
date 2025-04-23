@@ -5,11 +5,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q@%ka5fta$0ue(hw8da!difqm2!o=l^x0g8zjd4hg%aknm#7!h')
 
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
-# Aplicaciones instaladas
 INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.admin',
@@ -20,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -34,11 +34,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Travel_the_World.urls'
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://tercerentrega-aiwn.onrender.com",  # URL de tu frontend en Render
+    "https://tercerentrega-aiwn.onrender.com",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
@@ -58,7 +60,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Travel_the_World.wsgi.application'
 
-# ✅ Base de datos explícita (Render PostgreSQL)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -102,11 +103,4 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React local
-    "https://tu-app-react.vercel.app",  # Cambia esto por el dominio real en producción
-]
-
-CORS_ALLOW_CREDENTIALS = True  # Para que se pasen cookies o tokens si es necesario
 
