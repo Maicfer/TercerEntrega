@@ -5,7 +5,8 @@ from rest_framework.routers import DefaultRouter
 from .views import ReseñaViewSet
 
 router = DefaultRouter()
-router.register(r'reseñas', ReseñaViewSet basename='reseña')
+router.register(r'reseñas', ReseñaViewSet, basename='reseña')
+
 
 urlpatterns = [
     path('', include(router.urls)),
