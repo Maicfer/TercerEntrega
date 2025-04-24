@@ -38,6 +38,7 @@ ROOT_URLCONF = 'Travel_the_World.urls'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://tercerentrega-aiwn.onrender.com",
+    "https://travel-the-world-frontend.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
